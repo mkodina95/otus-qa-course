@@ -1,4 +1,3 @@
-
 def test_open_mainpage(open_browser, url_param):
     """
 The test checks if the opened page has the necessary url

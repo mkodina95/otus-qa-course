@@ -22,7 +22,6 @@ The fixture returns the params for the necessary browser
         return driver
     elif browser_param == "ie":
         options = webdriver.IeOptions()
-        options.add_argument("--headless")
         driver = webdriver.Ie(options=options)
         return driver
 
