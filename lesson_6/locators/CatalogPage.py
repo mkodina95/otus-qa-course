@@ -2,15 +2,15 @@ class CatalogPage:
     """
 The file contains locators for the catalog page
     """
-    categories_list = ".//*[@class='list-group']"  # class
+    categories_list = ".//*[@class='list-group']"
     category_item = ".//*[@class='list-group']/*[contains(text(),[0])]"
-    content_block = "content"  # id
+    content_block = "content"
     sort_list_button = ".//*[@data-original-title='List']"
     sort_grid_button = ".//*[@data-original-title='Grid']"
     sort_dropdown = ".//*[@id='input-sort']/*[text()=[0]]"
-    sort_button = "input-sort"  # id
+    sort_button = "input-sort"
     items_per_page_dropdown = ".//*[@id='input-limit']/*[text()='Default']"
-    items_per_page_button = "input-limit"  # id
+    items_per_page_button = "input-limit"
     product_item = ".//*[contains(@class, 'product-layout')]"
     product_item_image = product_item + "//*[@class='image']"
     product_item_description = product_item + ".//*[@class='caption']"
