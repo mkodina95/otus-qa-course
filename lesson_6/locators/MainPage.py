@@ -7,6 +7,10 @@ The file contains locators for the Main page
         search_input = ".//*[@class='form-control input-lg']"
         search_button = ".//*[@class='btn btn-default btn-lg']"
         cart_button = ".//*[@id='cart']//*[@type='button']"
+        cart_button_text = cart_button + "//*[@id='cart-total']"
+        cart_block = ".//*[@id='cart']//*[contains(@class, 'dropdown-menu')]"
+        cart_delete_item_button = cart_block + "//*[@title='Remove']"
+        cart_checkout = ".//*[@id='cart']//*[contains(@class, 'dropdown-menu')]//*[@class='text-right']//a"
 
     class Menu:
         menu = ".//*[@class='navbar']"
