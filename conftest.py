@@ -61,3 +61,11 @@ def browser_param(request):
 The fixture returns browser
     """
     return request.config.getoption("--browser")
+
+
+@pytest.fixture()
+def trash_url():
+    """
+The fixture returns the url for moving docs to trash
+    """
+    return 'https://marcojakob.github.io/dart-dnd/basic/'
