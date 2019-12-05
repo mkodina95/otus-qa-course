@@ -3,27 +3,39 @@ The file contains the fixtures for tests
 """
 import pytest
 from selenium import webdriver
+from selenium.common import exceptions
 
 
 @pytest.fixture()
-def open_browser(browser_param):
+def open_browser(browser_param, wait_param):
     """
 The fixture returns the params for the necessary browser
     """
-    if browser_param == "chrome":
-        options = webdriver.ChromeOptions()
-        options.add_argument("--headless")
-        driver = webdriver.Chrome(options=options)
+    try:
+        driver = None
+        if browser_param == "chrome":
+            options = webdriver.ChromeOptions()
+            options.add_argument("--headless")
+            driver = webdriver.Chrome(options=options)
+        elif browser_param == "ff":
+            options = webdriver.FirefoxOptions()
+            options.add_argument("--headless")
+            driver = webdriver.Firefox(options=options)
+        elif browser_param == "ie":
+            options = webdriver.IeOptions()
+            driver = webdriver.Ie(options=options)
+        else:
+            return driver
+
+        driver.implicitly_wait(wait_param)
         return driver
-    elif browser_param == "ff":
-        options = webdriver.FirefoxOptions()
-        options.add_argument("--headless")
-        driver = webdriver.Firefox(options=options)
-        return driver
-    elif browser_param == "ie":
-        options = webdriver.IeOptions()
-        driver = webdriver.Ie(options=options)
-        return driver
+    except exceptions.WebDriverException:
+        # Exception in case when we don't have suitable browser (for example, IE for MacOS)
+        print("\n WebDriverException reached")
+        return None
+    except Exception as e:
+        print("\n" + type(e).__name__ + ".Something went wrong")
+        return None
 
 
 def pytest_addoption(parser):
@@ -46,6 +58,14 @@ The function for returning browser and url using addoption
         required=False
     )
 
+    parser.addoption(
+        "--wait",
+        action="store",
+        default="10",
+        help="This is default wait time",
+        required=False
+    )
+
 
 @pytest.fixture
 def url_param(request):
@@ -61,6 +81,14 @@ def browser_param(request):
 The fixture returns browser
     """
     return request.config.getoption("--browser")
+
+
+@pytest.fixture
+def wait_param(request):
+    """
+The fixture returns wait time
+    """
+    return request.config.getoption("--wait")
 
 
 @pytest.fixture()
