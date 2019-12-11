@@ -1,13 +1,14 @@
 """
 The file contains the fixtures for tests
 """
+
 import pytest
 from selenium import webdriver
 from selenium.common import exceptions
 
 
 @pytest.fixture()
-def open_browser(browser_param, wait_param):
+def open_browser(request, browser_param, wait_param, url_param):
     """
 The fixture returns the params for the necessary browser
     """
@@ -26,8 +27,13 @@ The fixture returns the params for the necessary browser
             driver = webdriver.Ie(options=options)
         else:
             return driver
-
         driver.implicitly_wait(wait_param)
+        request.addfinalizer(driver.close)
+
+        def open(path=""):
+            return driver.get(url_param + path)
+        driver.open = open
+        driver.open()
         return driver
     except exceptions.WebDriverException:
         # Exception in case when we don't have suitable browser (for example, IE for MacOS)

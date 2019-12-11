@@ -1,84 +1,63 @@
 """
 The file contains tests using selenium webdriver
 """
-from selenium.webdriver.common.by import By
 
-from lesson_6.locators.CatalogPage import CatalogPage
-from lesson_6.locators.LoginPage import LoginPage
-from lesson_6.locators.MainPage import MainPage
-from lesson_6.locators.ProductPage import ProductPage
+from lesson_9.page_object.CatalogPage import CatalogPage
+from lesson_9.page_object.LoginPage import LoginPage
+from lesson_9.page_object.MainPage import MainPage
+from lesson_9.page_object.ProductPage import ProductPage
+from lesson_9.page_object.common.Header import Header
+from lesson_9.page_object.common.Menu import Menu
 
 
-def test_admin_login(open_browser, url_param):
+def test_admin_login(open_browser):
     """
 The test checks the correct login to admin panel
     """
-    open_browser.get(url_param)
-    open_browser.find_element(By.ID, LoginPage.logo)
-    open_browser.find_element(By.ID, LoginPage.username_input).click()
-    open_browser.find_element(By.ID, LoginPage.username_input).send_keys("user")
-    open_browser.find_element(By.ID, LoginPage.password_input).click()
-    open_browser.find_element(By.ID, LoginPage.password_input).send_keys("user")
-    open_browser.find_element(By.XPATH, LoginPage.login_button).click()
-    open_browser.find_element(By.XPATH, LoginPage.user)
-    open_browser.close()
+    LoginPage(open_browser) \
+        .input_username("user") \
+        .input_password("user") \
+        .submit() \
+        .verify_logged_on()
 
 
-def test_search_product(open_browser, url_param):
+def test_search_product(open_browser):
     """
 The test checks the search item
     """
-    open_browser.get(url_param)
-    open_browser.find_element(By.XPATH, MainPage.Header.search_input).click()
-    open_browser.find_element(By.XPATH, MainPage.Header.search_input).send_keys("Samsung Galaxy")
-    open_browser.find_element(By.XPATH, MainPage.Header.search_button).click()
-    open_browser.find_element(By.XPATH, CatalogPage.product_item)
-    open_browser.find_element_by_partial_link_text("Samsung Galaxy")
-    open_browser.close()
+    Header(open_browser).search("Samsung Galaxy")
+    CatalogPage(open_browser).find_product() \
+        .compare_product_name("Samsung Galaxy")
 
 
-def test_open_catalog(open_browser, url_param):
+def test_open_catalog(open_browser):
     """
 The test checks opening the catalog
     """
-    open_browser.get(url_param)
-    open_browser.find_element(By.XPATH, MainPage.Menu.menu)
-    open_browser.find_element(By.XPATH, MainPage.Menu.dropdown_tablets).click()
-    open_browser.find_element(By.XPATH, CatalogPage.categories_list)
-    open_browser.find_element(By.XPATH, ProductPage.breadcrumb)
-    open_browser.find_element(By.XPATH, CatalogPage.product_item)
-    open_browser.find_element_by_partial_link_text("Samsung Galaxy")
-    open_browser.close()
+    Menu(open_browser).open_menu()
+    CatalogPage(open_browser).find_categories() \
+        .find_product() \
+        .compare_product_name("Samsung Galaxy")
 
 
-def test_open_item_from_main_page(open_browser, url_param):
+def test_open_item_from_main_page(open_browser):
     """
 The test checks opening the product card from the main page
     """
-    open_browser.get(url_param)
-    open_browser.find_element(By.XPATH, MainPage.Promo.promo_iphone_block).click()
-    open_browser.find_element(By.XPATH, ProductPage.breadcrumb)
-    open_browser.find_element(By.XPATH, ProductPage.product_images)
-    open_browser.find_element(By.XPATH, ProductPage.description_active_button)
-    open_browser.find_element(By.ID, ProductPage.description_block)
-    open_browser.find_element(By.ID, ProductPage.add_to_card_button)
-    open_browser.close()
+    MainPage(open_browser).open_product_page()
+    ProductPage(open_browser).find_breadcrumb() \
+        .find_product_images() \
+        .find_description_block() \
+        .add_to_cart()
 
 
-def test_write_review(open_browser, url_param):
+def test_write_review(open_browser):
     """
 The test checks writing the review for the product
     """
-    open_browser.get(url_param)
-    open_browser.find_element(By.XPATH, MainPage.Promo.promo_iphone_block).click()
-    open_browser.find_element(By.XPATH, ProductPage.review_button).click()
-    open_browser.find_element(By.XPATH, ProductPage.review_active_button)
-    open_browser.find_element(By.ID, ProductPage.review_block)
-    open_browser.find_element(By.ID, ProductPage.review_input_name).send_keys("user")
-    open_browser.find_element(By.ID, ProductPage.review_input_review).send_keys(
-        "This is test comment for the item"
-    )
-    open_browser.find_element(By.XPATH, ProductPage.review_input_rating).click()
-    open_browser.find_element(By.ID, ProductPage.review_continue_button).click()
-    open_browser.find_element(By.XPATH, ProductPage.alert_line)
-    open_browser.close()
+    MainPage(open_browser).open_product_page()
+    ProductPage(open_browser).find_review_block() \
+        .write_name("user") \
+        .write_name("This is test comment for the item") \
+        .write_rating() \
+        .click_continue()
