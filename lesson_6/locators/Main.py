@@ -4,7 +4,7 @@ The file contains locators for the Main page
 
 
 class Main:
-    promo_block = {"id": "slideshow0"}
+    promo_block = {"xpath": ".//*[@id='slideshow0']"}
     promo_mac_block = {"xpath": ".//*[@id='slideshow0']//*[@alt='MacBookAir']"}
     promo_mac_block_active = {"xpath": ".//*[@id='slideshow0']//*[contains(@class, "
                                        "'swiper-slide-active')]//*[@alt='MacBookAir']"}

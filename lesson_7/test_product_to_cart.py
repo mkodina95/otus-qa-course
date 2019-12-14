@@ -37,3 +37,4 @@ The test checks the editing the quantity of the product in the shopping cart
         .move_to_checkout_from_cart_block()
     CartPage(open_browser).edit_product_quantity(quantity)
     ProductPage(open_browser).verify_quantity_in_cart(quantity)
+

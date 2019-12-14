@@ -19,7 +19,11 @@ class BasePage:
         elif 'partial link text' in selector.keys():
             by = By.PARTIAL_LINK_TEXT
             selector = selector['partial link text']
-        return self.driver.find_element(by, selector)
+
+        try:
+            return self.driver.find_element(by, selector)
+        except Exception:
+            return None
 
     def _input(self, selector, text):
         element = self._element(selector)
@@ -41,3 +45,8 @@ class BasePage:
 
     def _hover(self, selector):
         ActionChains(self.driver).move_to_element(self._element(selector)).perform()
+
+    @staticmethod
+    def _format_locator(source: dict, *values):
+        method = list(source)[0]
+        source[method] = source[method].format(*values)

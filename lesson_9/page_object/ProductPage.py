@@ -176,3 +176,35 @@ class ProductPage(BasePage):
         except Exception as e:
             print("\n Something went wrong: " + str(e))
             assert False
+
+    def add_to_comparison(self):
+        try:
+            self._click(Product.compare_button)
+            self._element(Product.alert_line)
+            return self
+        except exceptions.NoSuchElementException as e:
+            print("\n Cannot find an element: " + str(e))
+            assert False
+
+        except exceptions.ElementNotInteractableException as e:
+            print("\n Cannot interact with an element: " + str(e))
+            assert False
+
+        except Exception as e:
+            print("\n Something went wrong: " + str(e))
+            assert False
+
+    def move_to_comparison(self):
+        try:
+            self._click(Product.compare_link)
+        except exceptions.NoSuchElementException as e:
+            print("\n Cannot find an element: " + str(e))
+            assert False
+
+        except exceptions.ElementNotInteractableException as e:
+            print("\n Cannot interact with an element: " + str(e))
+            assert False
+
+        except Exception as e:
+            print("\n Something went wrong: " + str(e))
+            assert False

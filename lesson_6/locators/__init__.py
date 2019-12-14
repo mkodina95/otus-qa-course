@@ -5,4 +5,4 @@ from .Catalog import Catalog
 from .Main import Main
 from .Product import Product
 from .Footer import Footer
-from .Login import Login
+from .Admin import Admin

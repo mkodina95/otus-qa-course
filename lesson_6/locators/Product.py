@@ -7,6 +7,7 @@ class Product:
     breadcrumb = {"xpath": ".//*[@class='breadcrumb']"}
     product_images = {"xpath": ".//*[@class='thumbnails']"}
     alert_line = {"xpath": ".//*[contains(@class, 'alert')]"}
+    compare_link = {"xpath": ".//*[contains(@class, 'alert')]//*[text()='product comparison']"}
     wishlist_button = {"xpath": ".//*[contains(@class, 'fa-heart')]"
                                 "/ancestor::*[@class='btn btn-default']"}
     compare_button = {"xpath": ".//*[contains(@class, 'fa-exchange')]"
@@ -15,8 +16,8 @@ class Product:
     add_to_cart_button = {"id": "button-cart"}
     share_buttons = {"class": "addthis_toolbox addthis_default_style"}
     description_button = {"xpath": ".//*[@class='nav nav-tabs']//*[text()='Description']"}
-    description_active_button = {"xpath": description_button['xpath']
-                                          + "/ancestor::li[@class='active']"}
+    description_active_button = {"xpath": description_button['xpath'] + "/ancestor::"
+                                                                        "li[@class='active']"}
     description_block = {"id": "tab-description"}
     review_button = {"xpath": ".//*[@class='nav nav-tabs']//*[contains(text(),'Reviews')]"}
     review_active_button = {"xpath": review_button['xpath'] + "/ancestor::li[@class='active']"}

@@ -4,7 +4,7 @@ The file contains locators for header block
 
 
 class Header:
-    logo = {"id": "logo"}
+    logo = {"xpath": ".//*[@id='logo']"}
     search_input = {"xpath": ".//*[@class='form-control input-lg']"}
     search_button = {"xpath": ".//*[@class='btn btn-default btn-lg']"}
     cart_button = {"xpath": ".//*[@id='cart']//*[@type='button']"}

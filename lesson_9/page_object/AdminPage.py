@@ -1,13 +1,13 @@
 from selenium.common import exceptions
 
-from lesson_6.locators import Login
+from lesson_6.locators.Admin import Admin
 from lesson_9.page_object.BasePage import BasePage
 
 
-class LoginPage(BasePage):
+class AdminPage(BasePage):
     def input_username(self, text):
         try:
-            self._input(Login.username_input, text)
+            self._input(Admin.username_input, text)
             return self
         except exceptions.NoSuchElementException as e:
             print("\n Cannot find an element: " + str(e))
@@ -23,7 +23,7 @@ class LoginPage(BasePage):
 
     def input_password(self, text):
         try:
-            self._input(Login.password_input, text)
+            self._input(Admin.password_input, text)
             return self
         except exceptions.NoSuchElementException as e:
             print("\n Cannot find an element: " + str(e))
@@ -39,7 +39,7 @@ class LoginPage(BasePage):
 
     def submit(self):
         try:
-            self._click(Login.login_button)
+            self._click(Admin.login_button)
             return self
         except exceptions.NoSuchElementException as e:
             print("\n Cannot find an element: " + str(e))
@@ -55,7 +55,7 @@ class LoginPage(BasePage):
 
     def verify_logged_on(self):
         try:
-            self._element(Login.user)
+            self._element(Admin.user)
             return self
         except exceptions.NoSuchElementException as e:
             print("\n Cannot find an element: " + str(e))

@@ -3,7 +3,7 @@ The file contains locators for the login page
 """
 
 
-class Login:
+class Admin:
     logo = {"id": "header-logo"}
     panel_heading = {"id": "panel-heading"}
     panel_block = {"id": "panel-body"}

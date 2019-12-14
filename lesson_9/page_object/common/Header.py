@@ -78,3 +78,21 @@ class Header(BasePage):
             print("\n Something went wrong: " + str(e))
             assert False
 
+    def logo_click(self):
+        try:
+            self._click(H.logo)
+        except exceptions.NoSuchElementException as e:
+            print("\n Cannot find an element: " + str(e))
+            assert False
+
+        except exceptions.ElementNotInteractableException as e:
+            print("\n Cannot interact with an element: " + str(e))
+            assert False
+
+        except exceptions.InvalidElementStateException as e:
+            print("\n Cannot edit an element: " + str(e))
+            assert False
+
+        except Exception as e:
+            print("\n Something went wrong: " + str(e))
+            assert False

@@ -3,7 +3,7 @@ The file contains tests using selenium webdriver
 """
 
 from lesson_9.page_object.CatalogPage import CatalogPage
-from lesson_9.page_object.LoginPage import LoginPage
+from lesson_9.page_object.AdminPage import AdminPage
 from lesson_9.page_object.MainPage import MainPage
 from lesson_9.page_object.ProductPage import ProductPage
 from lesson_9.page_object.common.Header import Header
@@ -14,7 +14,7 @@ def test_admin_login(open_browser):
     """
 The test checks the correct login to admin panel
     """
-    LoginPage(open_browser) \
+    AdminPage(open_browser) \
         .input_username("user") \
         .input_password("user") \
         .submit() \
@@ -34,7 +34,7 @@ def test_open_catalog(open_browser):
     """
 The test checks opening the catalog
     """
-    Menu(open_browser).open_menu()
+    Menu(open_browser).open_menu_tablets()
     CatalogPage(open_browser).find_categories() \
         .find_product() \
         .compare_product_name("Samsung Galaxy")

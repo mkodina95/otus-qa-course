@@ -25,3 +25,4 @@ class MainPage(BasePage):
             print("\n Something went wrong: " + str(e))
             assert False
 
+
