@@ -51,7 +51,7 @@ The function for returning browser and url using addoption
     parser.addoption(
         "--browser",
         action="store",
-        default="ff",
+        default="chrome",
         help="The request browser",
         required=False
     )
@@ -59,7 +59,7 @@ The function for returning browser and url using addoption
     parser.addoption(
         "--url",
         action="store",
-        default="http://localhost/index.php",
+        default="http://localhost/",
         help="This is default opencart url",
         required=False
     )

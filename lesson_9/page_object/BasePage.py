@@ -30,6 +30,10 @@ class BasePage:
         element.clear()
         element.send_keys(text)
 
+    def _input_file(self, selector, text):
+        element = self._element(selector)
+        element.send_keys(text)
+
     def _get_text(self, selector):
         element = self._element(selector)
         return element.text
@@ -45,6 +49,11 @@ class BasePage:
 
     def _hover(self, selector):
         ActionChains(self.driver).move_to_element(self._element(selector)).perform()
+
+    def _accept_alert(self, wait=5):
+        WebDriverWait(self.driver, wait).until(EC.alert_is_present(), "Your file was successfully uploaded!")
+        obj = self.driver.switch_to.alert
+        obj.accept()
 
     @staticmethod
     def _format_locator(source: dict, *values):
