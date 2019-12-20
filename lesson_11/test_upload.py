@@ -13,4 +13,4 @@ def test_upload(open_browser):
         .submit() \
         .verify_logged_on() \
         .add_new_download() \
-        .upload_file("/Users/m.kodina/otus-qa-course/lesson_10/img/123.jpeg") \
+        .upload_file("/Users/m.kodina/otus-qa-course/lesson_11/img/123.jpeg")
