@@ -1,3 +1,4 @@
+import allure
 from selenium.common import exceptions
 
 from lesson_6.locators import Product, Header
@@ -6,23 +7,24 @@ from lesson_9.page_object.BasePage import BasePage
 
 class ProductPage(BasePage):
     def input_quantity_of_products(self, quantity):
-        try:
-            self._input(Product.quantity_input, quantity)
-            return self
-        except exceptions.NoSuchElementException as e:
-            print("\n Cannot find an element: " + str(e))
-            assert False
+        with allure.step("Set the quantity of items: " + quantity):
+            try:
+                self._input(Product.quantity_input, quantity)
+                return self
+            except exceptions.NoSuchElementException as e:
+                print("\n Cannot find an element: " + str(e))
+                assert False
 
-        except exceptions.ElementNotInteractableException as e:
-            print("\n Cannot interact with an element: " + str(e))
-            assert False
+            except exceptions.ElementNotInteractableException as e:
+                print("\n Cannot interact with an element: " + str(e))
+                assert False
 
-        except exceptions.InvalidElementStateException as e:
-            print("\n Cannot edit an element: " + str(e))
-            assert False
-        except Exception as e:
-            print("\n Something went wrong: " + str(e))
-            assert False
+            except exceptions.InvalidElementStateException as e:
+                print("\n Cannot edit an element: " + str(e))
+                assert False
+            except Exception as e:
+                print("\n Something went wrong: " + str(e))
+                assert False
 
     def verify_quantity_in_cart(self, quantity):
         try:
@@ -36,15 +38,16 @@ class ProductPage(BasePage):
             assert False
 
     def add_to_cart(self):
-        try:
-            self._click(Product.add_to_cart_button)
-            return self
-        except exceptions.NoSuchElementException as e:
-            print("\n Cannot find an element: " + str(e))
-            assert False
-        except Exception as e:
-            print("\n Something went wrong: " + str(e))
-            assert False
+        with allure.step("Add item to cart"):
+            try:
+                self._click(Product.add_to_cart_button)
+                return self
+            except exceptions.NoSuchElementException as e:
+                print("\n Cannot find an element: " + str(e))
+                assert False
+            except Exception as e:
+                print("\n Something went wrong: " + str(e))
+                assert False
 
     def find_breadcrumb(self):
         try:
@@ -129,36 +132,38 @@ class ProductPage(BasePage):
             assert False
 
     def write_review(self, text):
-        try:
-            self._input(Product.review_input_review, text)
-            return self
-        except exceptions.NoSuchElementException as e:
-            print("\n Cannot find an element: " + str(e))
-            assert False
+        with allure.step("Write a review"):
+            try:
+                self._input(Product.review_input_review, text)
+                return self
+            except exceptions.NoSuchElementException as e:
+                print("\n Cannot find an element: " + str(e))
+                assert False
 
-        except exceptions.InvalidElementStateException as e:
-            print("\n Cannot edit an element: " + str(e))
-            assert False
+            except exceptions.InvalidElementStateException as e:
+                print("\n Cannot edit an element: " + str(e))
+                assert False
 
-        except Exception as e:
-            print("\n Something went wrong: " + str(e))
-            assert False
+            except Exception as e:
+                print("\n Something went wrong: " + str(e))
+                assert False
 
     def write_rating(self):
-        try:
-            self._click(Product.review_input_rating)
-            return self
-        except exceptions.NoSuchElementException as e:
-            print("\n Cannot find an element: " + str(e))
-            assert False
+        with allure.step("Write a rating of product"):
+            try:
+                self._click(Product.review_input_rating)
+                return self
+            except exceptions.NoSuchElementException as e:
+                print("\n Cannot find an element: " + str(e))
+                assert False
 
-        except exceptions.ElementNotInteractableException as e:
-            print("\n Cannot interact with an element: " + str(e))
-            assert False
+            except exceptions.ElementNotInteractableException as e:
+                print("\n Cannot interact with an element: " + str(e))
+                assert False
 
-        except Exception as e:
-            print("\n Something went wrong: " + str(e))
-            assert False
+            except Exception as e:
+                print("\n Something went wrong: " + str(e))
+                assert False
 
     def click_continue(self):
         try:
@@ -178,33 +183,35 @@ class ProductPage(BasePage):
             assert False
 
     def add_to_comparison(self):
-        try:
-            self._click(Product.compare_button)
-            self._element(Product.alert_line)
-            return self
-        except exceptions.NoSuchElementException as e:
-            print("\n Cannot find an element: " + str(e))
-            assert False
+        with allure.step("Add product to comparison"):
+            try:
+                self._click(Product.compare_button)
+                self._element(Product.alert_line)
+                return self
+            except exceptions.NoSuchElementException as e:
+                print("\n Cannot find an element: " + str(e))
+                assert False
 
-        except exceptions.ElementNotInteractableException as e:
-            print("\n Cannot interact with an element: " + str(e))
-            assert False
+            except exceptions.ElementNotInteractableException as e:
+                print("\n Cannot interact with an element: " + str(e))
+                assert False
 
-        except Exception as e:
-            print("\n Something went wrong: " + str(e))
-            assert False
+            except Exception as e:
+                print("\n Something went wrong: " + str(e))
+                assert False
 
     def move_to_comparison(self):
-        try:
-            self._click(Product.compare_link)
-        except exceptions.NoSuchElementException as e:
-            print("\n Cannot find an element: " + str(e))
-            assert False
+        with allure.step("Open the comparison page"):
+            try:
+                self._click(Product.compare_link)
+            except exceptions.NoSuchElementException as e:
+                print("\n Cannot find an element: " + str(e))
+                assert False
 
-        except exceptions.ElementNotInteractableException as e:
-            print("\n Cannot interact with an element: " + str(e))
-            assert False
+            except exceptions.ElementNotInteractableException as e:
+                print("\n Cannot interact with an element: " + str(e))
+                assert False
 
-        except Exception as e:
-            print("\n Something went wrong: " + str(e))
-            assert False
+            except Exception as e:
+                print("\n Something went wrong: " + str(e))
+                assert False

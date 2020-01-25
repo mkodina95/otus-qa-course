@@ -1,10 +1,14 @@
 """
 The file contains tests for uploading the file
 """
+
 from helper import HelperUrl
+from lesson_15 import mark
 from lesson_9.page_object.AdminPage import AdminPage
 
 
+@mark.admin
+@mark.normal
 def test_upload(open_browser):
     HelperUrl.admin_catalog_downloads(open_browser)
     AdminPage(open_browser) \

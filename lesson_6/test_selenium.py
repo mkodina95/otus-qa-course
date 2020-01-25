@@ -1,6 +1,8 @@
 """
 The file contains tests using selenium webdriver
 """
+from lesson_15 import mark
+
 from helper import HelperUrl
 from lesson_9.page_object.CatalogPage import CatalogPage
 from lesson_9.page_object.AdminPage import AdminPage
@@ -10,6 +12,8 @@ from lesson_9.page_object.common.Header import Header
 from lesson_9.page_object.common.Menu import Menu
 
 
+@mark.admin
+@mark.blocker()
 def test_admin_login(open_browser):
     """
 The test checks the correct login to admin panel
@@ -22,6 +26,8 @@ The test checks the correct login to admin panel
         .verify_logged_on()
 
 
+@mark.catalog
+@mark.normal()
 def test_search_product(open_browser):
     """
 The test checks the search item
@@ -32,6 +38,8 @@ The test checks the search item
         .compare_product_name("Samsung Galaxy")
 
 
+@mark.catalog
+@mark.critical()
 def test_open_catalog(open_browser):
     """
 The test checks opening the catalog
@@ -43,6 +51,8 @@ The test checks opening the catalog
         .compare_product_name("Samsung Galaxy")
 
 
+@mark.product
+@mark.normal()
 def test_open_item_from_main_page(open_browser):
     """
 The test checks opening the product card from the main page
@@ -55,6 +65,8 @@ The test checks opening the product card from the main page
         .add_to_cart()
 
 
+@mark.product
+@mark.normal()
 def test_write_review(open_browser):
     """
 The test checks writing the review for the product

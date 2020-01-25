@@ -1,13 +1,17 @@
 """
 The file contains tests for catalog page
 """
+
 from helper import HelperUrl
+from lesson_15 import mark
 from lesson_9.page_object.CatalogPage import CatalogPage
 from lesson_9.page_object.MainPage import MainPage
 from lesson_9.page_object.ProductPage import ProductPage
 from lesson_9.page_object.common import Menu
 
 
+@mark.catalog
+@mark.normal()
 def test_add_to_comparison(open_browser):
     """
 The test checks the adding product to comparison
@@ -19,6 +23,8 @@ The test checks the adding product to comparison
     CatalogPage(open_browser).compare_product_name("Samsung Galaxy")
 
 
+@mark.catalog
+@mark.critical()
 def test_open_catalog_from_menu(open_browser, item="PC"):
     """
 The test checks the opening catalog from header menu
@@ -30,6 +36,8 @@ The test checks the opening catalog from header menu
         .get_title(item)
 
 
+@mark.catalog
+@mark.normal()
 def test_open_product_from_catalog(open_browser):
     """
 The test checks the opening product from catalog
@@ -42,6 +50,9 @@ The test checks the opening product from catalog
         .compare_product_name("Samsung Galaxy")
 
 
+@mark.catalog
+@mark.cart
+@mark.critical()
 def test_add_to_cart_from_catalog(open_browser):
     """
 The test checks the adding product to cart from the catalog
@@ -55,6 +66,8 @@ The test checks the adding product to cart from the catalog
     ProductPage(open_browser).verify_quantity_in_cart("1")
 
 
+@mark.catalog
+@mark.minor()
 def test_move_to_catalog_items(open_browser):
     """
 The test checks if the subitems in catalog menu are hidden

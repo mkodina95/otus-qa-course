@@ -2,6 +2,8 @@
 The file contains the fixtures for tests
 """
 from datetime import datetime
+
+import allure
 import pytest
 
 from selenium import webdriver
@@ -101,6 +103,10 @@ class EventListener(AbstractEventListener):
         now = datetime.now()
         driver.save_screenshot('/Users/m.kodina/otus-qa-course/lesson_12/screenshots/exception '
                                + now.strftime("%Y-%m-%d %H:%M:%S") + '.png')
+        allure.attach.file(
+            '/Users/m.kodina/otus-qa-course/lesson_12/screenshots/exception '
+            + now.strftime("%Y-%m-%d %H:%M:%S") + '.png',
+            attachment_type=allure.attachment_type.PNG)
         logger.log(logging.ERROR, msg=("Something went wrong: " + exception))
 
 
