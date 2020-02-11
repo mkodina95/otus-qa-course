@@ -66,6 +66,15 @@ The fixture returns the params for the necessary browser
         return None
 
 
+@pytest.fixture()
+def mysql_executor(host="127.0.0.1", user="bn_opencart", db="bitnami_opencart"):
+    mysql_connection = MySqlConnector(host, user, db)
+    mysql_executor = SqlExecutor(mysql_connection)
+
+    yield mysql_executor
+    mysql_executor.close()
+
+
 def pytest_addoption(parser):
     """
 The function for returning browser and url using addoption
