@@ -1,5 +1,6 @@
 language: python
 python: 3.7
-os: windows
+os: osx
+sudo: true
 script:
     - pipenv run pytest lesson_13/browserstack/test_browserstack.py -s -v
