@@ -1,3 +1,5 @@
+![Travis CI](https://travis-ci.org/mkodina95/otus-qa-course.svg?branch=master)
+
 Для запуска тестов необходимо:
 1. Склонировать проект в заранее выбранную директорию 
 [https://github.com/mkodina95/otus-qa-course.git]
