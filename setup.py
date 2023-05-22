@@ -12,7 +12,7 @@ setup(
     setup_requires=[
         'allure-pytest==2.8.6',
         'pytest==4.6.0',
-        'requests==2.20.0',
+        'requests==2.31.0',
         'selenium==3.141.0',
         'PyMySQL==0.9.3'
     ],
